@@ -1,1 +1,57 @@
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+Gui, Add, Tab3,, 1|2|3
+
+Gui, Tab, 1
+Gui, Add, Text,, Control + Shift + 1 to paste:
+Gui, Add, Edit, vFirst,
+Gui, Add, Text,, Control + Shift + 2 to paste:
+Gui, Add, Edit, vSecond,
+Gui, Add, Text,, Control + Shift + 3 to paste:
+Gui, Add, Edit, vThird,
+Gui, Add, Text,, Control + Shift + 4 to paste:
+Gui, Add, Edit, vFourth,
+
+Gui, Tab, 2
+Gui, Add, Text,, Base Variable:
+Gui, Add, Edit, vBase
+Gui, Add, Text,, Append Value - Start:
+Gui, Add, Edit, vAppendStart
+Gui, Add, Text,, Append Value - Stop:
+Gui, Add, Edit, vAppendStop
+Gui, Add, Text, %CurrentValue%, Current Value:
+
+Gui, Tab, 3
+Gui, Add, ListView, r20 w900, File Name|File Size (KB)
+Loop, %A_MyDocuments%\*.*
+    LV_Add("", A_LoopFileName, A_LoopFileSizeKB)
+
+Gui, Show, w300 h500
+Return
+
+^+1::
+GuiControlGet, First
+Send, %First%
+return
+
+^+2::
+GuiControlGet, Second
+Send, %Second%
+return
+
+^+3::
+GuiControlGet, Third
+Send, %Third%
+return
+
+^+4::
+GuiControlGet, Fourth
+Send, %Fourth%
+return
+
+GuiClose:
+ExitApp
 
